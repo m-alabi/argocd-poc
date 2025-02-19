@@ -24,7 +24,7 @@ spec:
     spec:
       project: poc-jobs
       source:
-        repoURL: https://github.com/nking-betika/gitops-poc.git
+        repoURL: https://github.com/m-alabi/argocd-poc.git
         path: "{{repoPath}}"
         targetRevision: HEAD
         helm:
