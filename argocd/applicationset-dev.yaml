@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: poc-multi-app-deploy
+  name: argocd-poc
   namespace: argocd
 spec:
   generators:
@@ -14,11 +14,11 @@ spec:
       - list:
           elements:
           - name: v1
-            repoPath: helm-chart/nginx
-            namespace: test
+            repoPath: values-2.yam1
+            namespace: wallet
           - name: v2
-            repoPath: helm-chart/nginx
-            namespace: test
+            repoPath: values-2.yaml
+            namespace: wallet
 
   template:
     metadata:
