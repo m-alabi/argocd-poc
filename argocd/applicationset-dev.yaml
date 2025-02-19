@@ -1,23 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
 metadata:
   name: poc-multi-app-deploy
   namespace: argocd
 spec:
   generators:
-    - matrix:
-        generators:
-          - list:
-              elements:
-                - environment: test
-                  server: https://kubernetes.default.svc
-          - list:
-              elements:
-                - name: v1
-                  repoPath: helm-chart/nginx
-                  namespace: test
-                - name: v2
-                  repoPath: helm-chart/nginx
-                  namespace: test
-    
+  - matrix:
+      generators:
+      - list:
+          elements:
+          - environment: test
+            server: https://kubernetes.default.svc
+      - list:
+          elements:
+          - name: v1
+            repoPath: helm-chart/nginx
+            namespace: test
+          - name: v2
+            repoPath: helm-chart/nginx
+            namespace: test
+
   template:
     metadata:
       name: "{{name}}-{{environment}}"
@@ -29,7 +31,7 @@ spec:
         targetRevision: HEAD
         helm:
           valueFiles:
-            - "values-{{name}}.yaml"
+          - "values-{{name}}.yaml"
       destination:
         server: "{{server}}"
         namespace: "{{namespace}}"
@@ -38,4 +40,4 @@ spec:
           prune: true
           selfHeal: true
         syncOptions:
-          - ServerSideApply=true
+        - ServerSideApply=true
