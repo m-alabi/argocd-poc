@@ -1,0 +1,88 @@
+wallet 
+    service-mesh
+    account-api
+    transaction-worker
+    deposit-worker
+
+
+USSD
+        service
+            payment
+                devel
+                prod(all countries)
+
+            account
+                devel
+                prod(all countries)
+            client
+            banker-bet
+            sport
+
+        proxies
+            airtel-ug
+                devel
+                prod
+            airtel-et
+                devel
+                prod
+            ...
+            mtn
+                devel
+                prod
+        ussd-simulator
+        
+
+
+
+sportbook/
+│── charts/                      # Holds Helm dependencies (if any)
+│── common/                      # Common templates and helpers
+│   ├── _helpers.tpl             # Common template helpers (labels, naming)
+│── values/                      # Stores separate environment values
+│   ├── devel/                   # Environment-specific values for devel
+│   │   ├── betengine-reserve-api.yaml
+│   │   ├── sportsbook-bet-api.yaml
+│   │   ├── sportsbook-bet-validation-api.yaml
+│   ├── prod_ug/                 # Environment-specific values for prod_ug
+│   │   ├── betengine-reserve-api.yaml
+│   │   ├── sportsbook-bet-api.yaml
+│   ├── prod_ke/                 # Environment-specific values for prod_ke
+│   │   ├── sportsbook-bet-api.yaml
+│   │   ├── sportsbook-award-jp-bonus-api.yaml
+│   ├── prod_cd/                 # Environment-specific values for prod_cd
+│   │   ├── sportsbook-bet-api.yaml
+│   │   ├── cashout-mts-publisher.yaml
+│── helm-apps/                   # Helm charts for each microservice
+│   ├── betengine-reserve-api/
+│   │   ├── Chart.yaml
+│   │   ├── values.yaml
+│   │   ├── templates/
+│   ├── sportsbook-bet-api/
+│   │   ├── Chart.yaml
+│   │   ├── values.yaml
+│   │   ├── templates/
+│   ├── sportsbook-bet-validation-api/
+│   │   ├── Chart.yaml
+│   │   ├── values.yaml
+│   │   ├── templates/
+│   ├── resulting-won-bets-engine-java/
+│   │   ├── Chart.yaml
+│   │   ├── values.yaml
+│   │   ├── templates/
+│── argocd-apps/                 # ArgoCD application manifests
+│   ├── devel/                   # ArgoCD apps for development
+│   │   ├── betengine-reserve-api.yaml
+│   │   ├── sportsbook-bet-api.yaml
+│   ├── prod_ug/                 # ArgoCD apps for prod_ug
+│   │   ├── sportsbook-bet-api.yaml
+│   │   ├── resulting-won-bets-engine-java.yaml
+│   ├── prod_ke/                 # ArgoCD apps for prod_ke
+│   │   ├── sportsbook-bet-api.yaml
+│   │   ├── sportsbook-award-jp-bonus-api.yaml
+│   ├── prod_cd/                 # ArgoCD apps for prod_cd
+│   │   ├── sportsbook-bet-api.yaml
+│   │   ├── cashout-mts-publisher.yaml
+│── .github/workflows/            # CI/CD pipelines for Helm deployment
+│   ├── helm-deploy.yml           # GitHub Actions pipeline
+│── .gitignore                    # Ignore unnecessary files
+│── README.md                     # Overview of the repo
