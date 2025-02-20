@@ -13,10 +13,10 @@ spec:
             server: https://kubernetes.default.svc
       - list:
           elements:
-          - name: v1
+          - name: 1
             repoPath: helm-chart
             namespace: wallet
-          - name: v2
+          - name: 2
             repoPath: helm-chart
             namespace: wallet
 
