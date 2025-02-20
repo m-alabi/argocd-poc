@@ -14,17 +14,17 @@ spec:
       - list:
           elements:
           - name: v1
-            repoPath: values-2.yam1
+            repoPath: helm-chart
             namespace: wallet
           - name: v2
-            repoPath: values-2.yaml
+            repoPath: helm-chart
             namespace: wallet
 
   template:
     metadata:
       name: "{{name}}-{{environment}}"
     spec:
-      project: poc-jobs
+      project: argocd-poc
       source:
         repoURL: https://github.com/m-alabi/argocd-poc.git
         path: "{{repoPath}}"

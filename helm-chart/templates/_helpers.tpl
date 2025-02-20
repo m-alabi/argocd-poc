@@ -49,14 +49,3 @@ Selector labels
 app.kubernetes.io/name: {{ include "wallet-service-mesh-helm.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
-
-{{/*
-Create the name of the service account to use
-*/}}
-{{- define "wallet-service-mesh-helm.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "wallet-service-mesh-helm.fullname" .) .Values.serviceAccount.name }}
-{{- else }}
-{{- default "default" .Values.serviceAccount.name }}
-{{- end }}
-{{- end }}
