@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "wall.fullname" . }}
+  name: {{ include "wallet-service-mesh-helm.fullname" . }}
   labels:
     {{- include "wallet-service-mesh-helm.labels" . | nindent 4 }}
 spec:
